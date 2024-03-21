@@ -19,9 +19,10 @@ public static class AddressableAssetsBuilder
 
     public static string AABuildPath;
     public static string AALoadPath => $"{aa_placeholder}/{aa_bundle_dir}";
-    public static void Build(string savePath, bool useCache)
+
+    public static void Build(string savePath)
     {
-        Debug.Log($" ---  Build resource to {savePath}, use cache: {useCache}");
+        Debug.Log($" ---  Build resource to {savePath}");
         // 获取项目目录的绝对路径
         string projectPath = Directory.GetParent(Application.dataPath).FullName;
 
@@ -32,8 +33,7 @@ public static class AddressableAssetsBuilder
 
         var tempPath = Path.Combine(projectPath, "Build_AA_Cache");
         AABuildPath = tempPath;
-        if (!useCache)
-            buildAddressableContent();
+        buildAddressableContent();
         FolderUtility.CopyDirectory(tempPath, outputPath);
         Debug.Log($"AA build path: {AABuildPath}");
 
