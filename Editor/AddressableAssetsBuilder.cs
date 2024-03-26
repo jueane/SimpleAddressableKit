@@ -9,17 +9,6 @@ using UnityEngine.AddressableAssets;
 
 public static class AddressableAssetsBuilder
 {
-    public static string aa_placeholder = "aa_placeholder";
-
-    public static string aa_bundle_dir = "res_bundles";
-    public const string aa_catalog_dir = "res_configurations";
-
-    public const string aa_catalog_file = "catalog.json";
-    public static string aa_config_file => $"{aa_catalog_dir}/{aa_catalog_file}";
-
-    public static string AABuildPath;
-    public static string AALoadPath => $"{aa_placeholder}/{aa_bundle_dir}";
-
     public static void Build(string savePath)
     {
         Debug.Log($" ---  Build resource to {savePath}");
@@ -28,14 +17,14 @@ public static class AddressableAssetsBuilder
 
         // 设置输出路径
         string outputPath = savePath;
-        outputPath = Path.Combine(outputPath, aa_bundle_dir);
+        outputPath = Path.Combine(outputPath, AAResConst.aa_bundle_dir);
         FolderUtility.EnsurePathExists(outputPath);
 
         var tempPath = Path.Combine(projectPath, "Build_AA_Cache");
-        AABuildPath = tempPath;
+        AAResConst.AABuildPath = tempPath;
         buildAddressableContent();
         FolderUtility.CopyDirectory(tempPath, outputPath);
-        Debug.Log($"AA build path: {AABuildPath}");
+        Debug.Log($"AA build path: {AAResConst.AABuildPath}");
 
         CopyAAConfig(savePath);
     }
@@ -44,17 +33,17 @@ public static class AddressableAssetsBuilder
     {
         var path = Addressables.RuntimePath;
 
-        var from = Path.Combine(BuildConst.ProjectPath, path, aa_catalog_file);
+        var from = Path.Combine(BuildConst.ProjectPath, path, AAResConst.aa_catalog_file);
 
         // 获取项目目录的绝对路径
         string projectPath = Directory.GetParent(Application.dataPath).FullName;
-        var to = Path.Combine(projectPath, basePath, aa_config_file);
+        var to = Path.Combine(projectPath, basePath, AAResConst.aa_config_file);
 
         var toDir = Path.GetDirectoryName(to);
         FolderUtility.EnsurePathExists(toDir);
 
         File.Copy(from, to, true);
-        Debug.Log($"File {aa_config_file} copied");
+        Debug.Log($"File {AAResConst.aa_config_file} copied");
     }
 
     // public static string GetBuildPathForProfile(string profileName)
