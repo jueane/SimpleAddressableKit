@@ -85,11 +85,9 @@ public static class AddressableAssetsBuilder
         return success;
     }
 
-    public static string build_script
-        = "Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedMode.asset";
+    public static string build_script = "Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedMode.asset";
 
-    public static string settings_asset
-        = "Assets/AddressableAssetsData/AddressableAssetSettings.asset";
+    public static string settings_asset = "Assets/AddressableAssetsData/AddressableAssetSettings.asset";
 
     public static string profile_name = "Default";
     private static AddressableAssetSettings settings;
@@ -99,21 +97,17 @@ public static class AddressableAssetsBuilder
         // This step is optional, you can also use the default settings:
         //settings = AddressableAssetSettingsDefaultObject.Settings;
 
-        settings
-            = AssetDatabase.LoadAssetAtPath<ScriptableObject>(settingsAsset)
-                as AddressableAssetSettings;
+        settings = AssetDatabase.LoadAssetAtPath<ScriptableObject>(settingsAsset) as AddressableAssetSettings;
 
         if (settings == null)
-            Debug.LogError($"{settingsAsset} couldn't be found or isn't " +
-                           $"a settings object.");
+            Debug.LogError($"{settingsAsset} couldn't be found or isn't " + $"a settings object.");
     }
 
     static void setProfile(string profile)
     {
         string profileId = settings.profileSettings.GetProfileId(profile);
         if (String.IsNullOrEmpty(profileId))
-            Debug.LogWarning($"Couldn't find a profile named, {profile}, " +
-                             $"using current profile instead.");
+            Debug.LogWarning($"Couldn't find a profile named, {profile}, " + $"using current profile instead.");
         else
             settings.activeProfileId = profileId;
     }
@@ -125,8 +119,6 @@ public static class AddressableAssetsBuilder
         if (index > 0)
             settings.ActivePlayerDataBuilderIndex = index;
         else
-            Debug.LogWarning($"{builder} must be added to the " +
-                             $"DataBuilders list before it can be made " +
-                             $"active. Using last run builder instead.");
+            Debug.LogWarning($"{builder} must be added to the " + $"DataBuilders list before it can be made " + $"active. Using last run builder instead.");
     }
 }

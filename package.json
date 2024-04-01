@@ -2,33 +2,26 @@
   "name": "com.jueane.simpleaddressablekit",
   "displayName": "SimpleAddressableKit",
   "version": "1.0.10",
-  "description": "A simple and straightforward Unity Hot Update Kit",
+  "description": "A simple addressable assets Kit",
   "dependencies": {
   },
   "keywords": [
     "unity",
     "package",
-    "hot-update",
+    "addressable",
     "simple"
   ],
   "author": "jueane",
-  "main": "dist/index.js",
-  "module": "dist/index.module.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "type": "library",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jueane/SimpleHotUpdateKit.git"
+    "url": "https://github.com/jueane/SimpleAddressableKit.git"
   },
   "bugs": {
-    "url": "https://github.com/jueane/SimpleHotUpdateKit/issues"
+    "url": "https://github.com/jueane/SimpleAddressableKit/issues"
   },
-  "homepage": "https://github.com/jueane/SimpleHotUpdateKit",
+  "homepage": "https://github.com/jueane/SimpleAddressableKit",
   "scripts": {
     "prepublish": "npm ci && npm run build"
   },
