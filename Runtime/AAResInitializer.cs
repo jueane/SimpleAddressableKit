@@ -1,17 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.AddressableAssets;
+﻿using UnityEngine.AddressableAssets;
 
-public class AAResInitializer
+public static class AAResInitializer
 {
-    public static void InitConfig()
+    public static void InitConfig(string loadPath)
     {
-        Addressables.LoadContentCatalogAsync($"{ApplicationConst.LoadRootPath}/{AAResConst.aa_config_file}");
+        Addressables.LoadContentCatalogAsync($"{loadPath}/{AAResConst.aa_config_file}");
         Addressables.InternalIdTransformFunc = location =>
         {
             var key = location.InternalId;
             if (key.EndsWith(".bundle"))
             {
-                key = key.Replace(AAResConst.aa_placeholder, ApplicationConst.LoadRootPath);
+                key = key.Replace(AAResConst.aa_placeholder, loadPath);
                 return key;
             }
 
